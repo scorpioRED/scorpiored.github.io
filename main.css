@@ -12,6 +12,10 @@
     padding-bottom: 5px;
 
 }
+img {
+    height: 120px;
+    width: 120px
+}
 
 .card {
     border: solid black 1px;
