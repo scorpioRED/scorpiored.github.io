@@ -1,0 +1,17 @@
+{
+  "name": "kot_pokedex",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "devDependencies": {
+    "http-server": "^0.6.1",
+    "angular": "1.5.2",
+    "bootstrap": "3.3.6"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -a localhost -p 8000"
+  },
+  "author": "Vitaliy Heras",
+  "license": "ISC"
+}
