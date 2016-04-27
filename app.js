@@ -3,6 +3,7 @@ var pocemonAPP = angular.module('pocemonAPP',[])
     .controller('mainCtrl',function($scope,$http,get_request){
         $scope.loading ={main:true,button:false};
         $scope.single_container = {spinner:false,all:false};
+        $scope.pokemon = {types:[]};
         var start = 12;
 
 
@@ -14,7 +15,17 @@ var pocemonAPP = angular.module('pocemonAPP',[])
                     $scope.lists = answ['data']['objects'];
                     $scope.loading.main = false;
                     $scope.loading.button = false;
+                    angular.forEach($scope.lists, function(single) {
+                        if($scope.pokemon.types.indexOf(single['types'][0]['name']) == -1){
+                            $scope.pokemon.types.push(single['types'][0]['name']);
+                        }else {
+                            if(single['types'][1] && $scope.pokemon.types.indexOf(single['types'][1]['name']) == -1){
+                                $scope.pokemon.types.push(single['types'][1]['name']);
+                            }
+                        }
+                    });
 
+                    console.log( $scope.pokemon.types)
 
 
                 },function(err){
@@ -50,6 +61,22 @@ var pocemonAPP = angular.module('pocemonAPP',[])
 
         $scope.show_single = function(id){
             main.single(id)
+        };
+
+
+        $scope.typeFilter = function(item) {
+            if($scope.pokemonType){
+               if(item['types'][0]['name'] == $scope.pokemonType ){
+                   return item
+               }
+                if (item['types'][1]){
+                    if (item['types'][1]['name'] == $scope.pokemonType){
+                        return item
+                    }
+                }
+            }else {
+                return item
+            }
         }
 
 
@@ -65,3 +92,4 @@ var pocemonAPP = angular.module('pocemonAPP',[])
 
         }
     })
+

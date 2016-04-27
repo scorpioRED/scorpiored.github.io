@@ -16,12 +16,15 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <div class="col-md-4 col-sm-4">
-                <p class="navbar-brand">Pokedex</p>
+                <h3 class="navbar-brand">Pokedex</h3>
             </div>
             <div class="col-md-3 col-sm-5 col-sm-offset-3 col-md-offset-4 ">
                 <div class="input-group navbar-brand">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-                    <input class="form-control" ng-model="pokemon.types" placeholder="filter" autocomplete="off" type="text">
+                    <label for="stype">select pokemon by type</label>
+                    <select class="form-control" ng-model="pokemonType" id="stype">
+                        <option selected value="">all</option>
+                        <option ng-repeat="type in pokemon.types" value="{{type}}">{{type}}</option>
+                    </select>
                 </div>
             </div>
 
@@ -48,9 +51,9 @@
         <div class="sk-circle12 sk-child"></div>
     </div>
     <div class="row" ng-hide="loading.main">
-        <div class="col-md-8 col-sm-8 col-xs-8 allpokemon">
+        <div class="col-md-8 col-sm-8 col-xs-6 allpokemon">
             <div class="row">
-                <div class="col-md-4 col-sm-5 cell" ng-repeat="l in lists | filter: pokemon.types">
+                <div class="col-md-4 col-sm-5 cell" ng-repeat="l in lists | filter:typeFilter">
                     <div class="col-md-12 col-sm-12 card" ng-click="show_single(l['pkdx_id'])">
                         <img ng-src="http://pokeapi.co/media/img/{{l['pkdx_id']}}.png ">
                         <p>{{l['name']}}</p>
@@ -65,7 +68,7 @@
             </div>
 
         </div>
-        <div class="col-md-3 col-sm-4 col-md-offset-1 col-lg-offset-0 col-lg-3 single" ng-class="{boreder:single_container.all}">
+        <div class="col-md-3 col-sm-4 col-xs-4 col-md-offset-1 col-lg-offset-0 col-lg-3 single" ng-class="{boreder:single_container.all}">
             <div class="sk-circle" ng-show="single_container.spinner">
                 <div class="sk-circle1 sk-child"></div>
                 <div class="sk-circle2 sk-child"></div>

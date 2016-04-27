@@ -4,3 +4,5 @@
 - to run app - type "npm start" and press 'Enter' then open your browser and go to url: "http://localhost:8000"
 
 Adapted to most popular screen resolution
+
+on github-pages : http://scorpiored.github.io.
